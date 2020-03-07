@@ -7,7 +7,7 @@ class IntroContent extends StatelessWidget {
   const IntroContent({Key key, @required this.page}) : super(key: key);
 
   Widget _buildWidget(Widget widget, String text, TextStyle style) {
-    return widget ?? Text(text, style: style, textAlign: TextAlign.center);
+    return widget ?? Text(text, style: style, textAlign: TextAlign.left);
   }
 
   @override
@@ -24,6 +24,15 @@ class IntroContent extends StatelessWidget {
               page.decoration.titleTextStyle,
             ),
           ),
+
+          if (page.image != null)
+            Container(
+              child: Padding(
+                padding: page.decoration.imagePadding,
+                child: page.image,
+              ),
+            ),
+
           Padding(
             padding: page.decoration.descriptionPadding,
             child: _buildWidget(
@@ -32,11 +41,9 @@ class IntroContent extends StatelessWidget {
               page.decoration.bodyTextStyle,
             ),
           ),
-          if (page.footer != null)
-            Padding(
-              padding: page.decoration.footerPadding,
-              child: page.footer,
-            ),
+
+
+
         ],
       ),
     );
